@@ -1,0 +1,19 @@
+{
+  "name": "hits",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build:server": "nitro build",
+    "build:vercel": "NITRO_PRESET=vercel nitro build",
+    "dev": "nitro dev"
+  },
+  "prettier": "@barelyhuman/prettier-config",
+  "devDependencies": {
+    "@barelyhuman/prettier-config": "^1.1.0",
+    "concurrently": "^8.2.0",
+    "nitropack": "^2.4.1",
+    "prettier": "^2.8.8"
+  },
+  "packageManager": "yarn@3.5.0"
+}

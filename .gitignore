@@ -1,0 +1,10 @@
+.generated
+.nitro
+.output
+node_modules 
+
+# Ignore pnp addition from yarn
+.yarn/cache
+.vercel
+
+data
