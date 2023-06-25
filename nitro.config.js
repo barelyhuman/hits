@@ -1,6 +1,11 @@
 import { defineNitroConfig } from 'nitropack/config'
 import preactIslandPlugins from '@barelyhuman/preact-island-plugins/rollup'
 import babel from '@rollup/plugin-babel'
+import process from 'node:process'
+import { config as loadEnv } from 'dotenv'
+
+// Force load dotenv
+loadEnv()
 
 export default defineNitroConfig({
   storage: {
