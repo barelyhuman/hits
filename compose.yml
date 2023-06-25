@@ -1,0 +1,20 @@
+version: '3.2'
+
+services:
+  # Uncomment if self hosting
+  # app:
+  #   build:
+  #     context: .
+  #   ports:
+  #     - 3000:3000
+  redis:
+    image: 'bitnami/redis:latest'
+    ports:
+      - 6379:6379
+    env_file:
+      - .env
+    volumes:
+      - redis-data:/bitnami/redis/data
+
+volumes:
+  redis-data:
