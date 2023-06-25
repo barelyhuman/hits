@@ -12,7 +12,7 @@ if (typeof window !== 'undefined') {
       .then(d => {
         count.value = d.count
       })
-  }, 1000)
+  }, 10000)
 }
 
 export default function LandingPage({ content }) {
