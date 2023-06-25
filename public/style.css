@@ -1,0 +1,13 @@
+
+@import url("https://rsms.me/raster/raster2.css?v=20");
+
+
+
+body{
+    --foreground-color:#343a40;
+}
+
+.shiki{
+    padding:10px;
+    border-radius:6px;
+}

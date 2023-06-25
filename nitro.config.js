@@ -1,4 +1,6 @@
 import { defineNitroConfig } from 'nitropack/config'
+import preactIslandPlugins from '@barelyhuman/preact-island-plugins/rollup'
+import babel from '@rollup/plugin-babel'
 
 export default defineNitroConfig({
   storage: {
@@ -9,5 +11,54 @@ export default defineNitroConfig({
       port: process.env.REDIS_PORT,
       password: process.env.REDIS_PASSWORD,
     },
+  },
+  imports: {
+    imports: [
+      {
+        name: 'renderToString',
+        as: 'renderComponent',
+        from: 'preact-render-to-string',
+      },
+    ],
+  },
+  publicAssets: [
+    {
+      dir: 'public',
+      baseURL: '/public',
+    },
+  ],
+  esbuild: {
+    options: {
+      jsxFactory: 'h',
+      jsxFragment: 'Fragment',
+      loaders: {
+        '.js': 'jsx',
+      },
+    },
+  },
+  rollupConfig: {
+    plugins: [
+      babel({
+        babelHelpers: 'bundled',
+        plugins: [
+          [
+            '@babel/plugin-transform-react-jsx',
+            {
+              runtime: 'automatic',
+              importSource: 'preact',
+            },
+          ],
+        ],
+      }),
+      preactIslandPlugins({
+        rootDir: '.',
+        atomic: true,
+        hash: false,
+        baseURL: '/public',
+        bundleClient: {
+          outDir: 'public',
+        },
+      }),
+    ],
   },
 })
