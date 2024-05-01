@@ -1,0 +1,49 @@
+<main class="container">
+  <section>
+    <header><h1>Hits</h1></header>
+  </section>
+  <section><p>Fast | Self Hosted | Page Hits Service</p></section>
+  <hr />
+  <section>
+    <h1 id="about">About</h1>
+    <p>Hits is a simple self hostable service for registering page views.</p>
+    <p>It's fast, tiny and built for a most simplest of use cases.</p>
+    <h2 id="usage">Usage</h2>
+    <p>The service only has 2 API's</p>
+    <p>→ Register Hits</p>
+    <pre><code class="language-sh">curl https://yourdomain.name/hit?url=https://another.domainname.com
+      </code></pre>
+    <p>← Get Back Hits</p>
+    <pre><code class="language-sh">curl https://yourdomain.name/hits?url=https://another.domainname.com
+      </code></pre>
+    <p>
+      Replace <code>yourdomain.name</code> with the url/host of wherever you're
+      hosting this service.
+    </p>
+    <p>
+      and <code>url?=https://another.domainname.com</code> with the link that
+      needs to be registered for hits
+    </p>
+    <h3 id="snippet">Snippet</h3>
+    <p>
+      Place the below lines into each page's <code>script</code> tag to register
+      hits
+    </p>
+    <pre><code class="language-js">fetch(`https://yourdomain.name/hit?url=${window.location.href}`)
+      .then(r=&gt;r.text())
+      </code></pre>
+  </section>
+  <div>
+    <h3>Counter</h3>
+    <p id="counter">0</p>
+  </div>
+</main>
+<script type="module">
+  const currentUrl = window.location.origin;
+  
+  // register a hit
+  await fetch(`/hit?url=${currentUrl}`)
+
+  const hitData = await fetch(`/hits?url=${currentUrl}`).then((d) => d.json());
+  document.querySelector("#counter").innerText = hitData.count;
+</script>
