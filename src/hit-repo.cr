@@ -29,7 +29,7 @@ class HitsRepo
     end
 
     if !id
-      result = @db.exec "INSERT INTO sites values (null, ?) returning id", args: [url]
+      result = @db.exec "INSERT INTO sites values (null, ?)", args: [url]
       @db.exec "INSERT INTO hits values (null, ?, ?)", args: [result.last_insert_id, Time.utc]
     else
       @db.exec "INSERT INTO hits values (null, ?, ?)", args: [id, Time.utc]
