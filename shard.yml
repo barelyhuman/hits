@@ -1,0 +1,21 @@
+name: hits
+version: 0.1.0
+
+authors:
+  - Reaper Gelera <ahoy@barelyhuman.dev>
+
+targets:
+  hits:
+    main: src/main.cr
+
+crystal: ">= 1.11.2"
+
+dependencies:
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+  kemal:
+    github: kemalcr/kemal
+  watcher:
+    github: faustinoaq/watcher
+
+license: MIT
