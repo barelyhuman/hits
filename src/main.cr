@@ -17,6 +17,8 @@ def getSumOfAll(hitRepo : HitsRepo, uriStr : String) : Int
   if uriStr.starts_with?("http://") || uriStr.starts_with?("https://")
     uri_inst = URI.parse uriStr
 
+    uri_inst.query = nil
+
     uri_inst.scheme = "http"
     urls.push(uri_inst.to_s)
 
@@ -26,6 +28,7 @@ def getSumOfAll(hitRepo : HitsRepo, uriStr : String) : Int
     urls.push(uri_inst.to_s.gsub("http://", "").gsub("https://", ""))
   else
     uri_inst = URI.parse uriStr
+    uri_inst.query = nil
     urls.push("http://#{uri_inst.to_s}")
     urls.push("https://#{uri_inst.to_s}")
     urls.push(uriStr)
